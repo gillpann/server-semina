@@ -12,7 +12,7 @@ let categorySchema = Schema(
     organizer: {
       type: mongoose.Types.ObjectId,
       ref: "Organizer",
-      required: [true, "Penyelenggara harus diisi"],
+      required: true,
     },
   },
   { timestamps: true }
