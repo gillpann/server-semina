@@ -1,13 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const { create, index, find, update, destroy } = require("./controller");
+const {
+  create,
+  index,
+  find,
+  update,
+  destroy,
+  changeStatus,
+} = require("./controller");
 const {
   authenticateUser,
   authorizeRoles,
 } = require("../../../middleware/auth");
 
 router.get("/events", authenticateUser, authorizeRoles("organizer"), index);
-router.get("/events/:id", authenticateUser, authorizeRoles("organizer"), find);
+router.get(
+  "/events/:id",
+  authenticateUser,
+  authorizeRoles("organizer"),
+  find
+);
 router.put(
   "/events/:id",
   authenticateUser,
@@ -20,6 +32,17 @@ router.delete(
   authorizeRoles("organizer"),
   destroy
 );
-router.post("/events", authenticateUser, authorizeRoles("organizer"), create);
+router.post(
+  "/events",
+  authenticateUser,
+  authorizeRoles("organizer"),
+  create
+);
+router.put(
+  "/events/:id/status",
+  authenticateUser,
+  authorizeRoles("organizer"),
+  changeStatus
+);
 
 module.exports = router;
