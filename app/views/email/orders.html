@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semina - Order Invoice</title>
+  </head>
+  <body>
+    <div
+      style="
+        font-family: Helvetica, Arial, sans-serif;
+        min-width: 1000px;
+        overflow: auto;
+        line-height: 2;
+      "
+    >
+      <div style="margin: 50px auto; width: 70%; padding: 20px 0">
+        <div style="border-bottom: 1px solid #eee">
+          <a
+            href=""
+            style="
+              font-size: 1.4em;
+              color: #00466a;
+              text-decoration: none;
+              font-weight: 600;
+            "
+            >Semina</a
+          >
+        </div>
+        <p style="font-size: 1.1em">Hi {{personalDetail.firstName}},</p>
+        <p>
+          Thank you for your order. Here is your invoice for the event <strong>{{historyEvent.title}}</strong>.
+        </p>
+        
+        <div style="border: 1px solid #ddd; padding: 15px; margin: 15px 0;">
+          <h2 style="color: #00466a; margin-top: 0;">Order Details</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Order Date:</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{date}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Event:</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{historyEvent.title}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Venue:</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{historyEvent.venueName}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Event Date:</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{historyEvent.date}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Status:</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{status}}</td>
+            </tr>
+          </table>
+
+          <h3 style="color: #00466a; margin-top: 20px;">Tickets</h3>
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background-color: #f2f2f2;">
+                <th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">Ticket Type</th>
+                <th style="padding: 8px; text-align: right; border-bottom: 1px solid #ddd;">Price</th>
+                <th style="padding: 8px; text-align: right; border-bottom: 1px solid #ddd;">Quantity</th>
+                <th style="padding: 8px; text-align: right; border-bottom: 1px solid #ddd;">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#orderItems}}
+              <tr>
+                <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{ticketCategories.type}}</td>
+                <td style="padding: 8px; text-align: right; border-bottom: 1px solid #ddd;">{{ticketCategories.price}}</td>
+                <td style="padding: 8px; text-align: right; border-bottom: 1px solid #ddd;">{{sumTicket}}</td>
+                <td style="padding: 8px; text-align: right; border-bottom: 1px solid #ddd;">{{subtotal}}</td>
+              </tr>
+              {{/orderItems}}
+              <tr>
+                <td colspan="3" style="padding: 8px; text-align: right; border-bottom: 1px solid #ddd;"><strong>Total:</strong></td>
+                <td style="padding: 8px; text-align: right; border-bottom: 1px solid #ddd;"><strong>{{totalPay}}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="border: 1px solid #ddd; padding: 15px; margin: 15px 0;">
+          <h3 style="color: #00466a; margin-top: 0;">Personal Details</h3>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Name:</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{personalDetail.firstName}} {{personalDetail.lastName}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Email:</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{personalDetail.email}}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Role:</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">{{personalDetail.role}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <p>
+          If you have any questions about your order, please contact us.
+        </p>
+        
+        <p style="font-size: 0.9em">Regards,<br />Semina Events</p>
+        <hr style="border: none; border-top: 1px solid #eee" />
+        <div
+          style="
+            float: right;
+            padding: 8px 0;
+            color: #aaa;
+            font-size: 0.8em;
+            line-height: 1;
+            font-weight: 300;
+          "
+        >
+          <p>Semina Events</p>
+          <p>Your Event Partner</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
