@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const app = express();
 
@@ -20,7 +21,7 @@ const v1 = '/api/v1';
 
 const notFoundMiddleware = require('./app/middleware/not-found');
 const errorHandlerMiddleware = require("./app/middleware/handler-error");
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
