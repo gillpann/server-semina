@@ -17,7 +17,7 @@ const getAllTalents = async (req) => {
       path: "image",
       select: "_id name",
     })
-    .select("_id name image");
+    .select("_id name role image");
 
   return result;
 };
@@ -33,8 +33,8 @@ const createTalents = async (req) => {
 
   const result = await Talents.create({
     name,
-    role,
     image,
+    role,
     organizer: req.user.organizer,
   });
 
