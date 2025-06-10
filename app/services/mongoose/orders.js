@@ -1,7 +1,7 @@
 const Orders = require("../../api/v1/orders/model");
 
 const getAllOrders = async (req) => {
-  const { limit = 10, page = 1, startDate, endDate } = req.query;
+  const { limit = 10, page = 1, startDate, endDate, keyword  } = req.query;
   let condition = { };
 
    if (req.user.role !== "owner") {
@@ -20,6 +20,10 @@ const getAllOrders = async (req) => {
         $lt: end,
       },
     };
+  }
+
+  if (keyword) {
+    condition["historyEvent.title"] = { $regex: keyword, $options: "i" };
   }
 
   const result = await Orders.find(condition)
