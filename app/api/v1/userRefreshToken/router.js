@@ -3,7 +3,7 @@ const router = express();
 const { index } = require("./controller");
 
 router.get(
-  "/refresh-token/:refreshToken/:email",
+  "/refresh-token/:refreshToken",
   index
 );
 

@@ -5,7 +5,7 @@ const {
   createTokenUser,
 } = require("../../utils");
 const Users = require("../../api/v1/users/model");
-const { NotFoundError, BadRequestError } = require("../../errors");
+const { NotFoundError } = require("../../errors");
 
 const createUserRefreshToken = async (payload) => {
   const result = await UserRefreshToken.create(payload);
@@ -14,21 +14,14 @@ const createUserRefreshToken = async (payload) => {
 };
 
 const getUserRefreshToken = async (req) => {
-  const { refreshToken, email } = req.params;
+  const { refreshToken } = req.params;
   const result = await UserRefreshToken.findOne({
     refreshToken,
   });
 
-  if (!result) throw new NotFoundError(`refreshToken tidak valid `);
+  if (!result) throw new NotFoundError('refreshToken tidak valid');
 
   const payload = isTokenValidRefreshToken({ token: result.refreshToken });
-
-  console.log("payload")
-  console.log(payload)
-
-  if (email !== payload.email) {
-    throw new BadRequestError("Email tidak sesuai dengan refreshToken");
-  }
 
   const userCheck = await Users.findOne({ email: payload.email });
 
